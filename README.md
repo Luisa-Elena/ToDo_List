@@ -45,3 +45,34 @@ npm run dev
 
 ## Usage
 - Type what you want to add in the list and click the Add button. Now the item is added. All the notes are stored in local storage so they will not be lost after refreshing the page.
+
+## Documentation
+- The App component is the main component that renders the Notes App interface. It manages the state for notes, newNote, noteId, and search. It also includes functions for creating, adding, deleting notes, and searching notes.
+- States:
+1. notes: An array containing the list of notes fetched from local storage.
+2. newNote: Represents the new note being created with an id and text.
+3. noteId: Represents the unique id for each note.
+4. search: Represents the search input to filter notes based on text.
+- Functions: 
+1. createNewNote:
+    Updates the newNote state based on user input.
+2. addNote:
+    Updates the newNote state based on user input.
+    Increments the id (this will be used for the new note)
+    Assigns the id to the added note
+3. deleteNote:
+    Deletes a note with the specified id from the notes array.
+4. searchNotes:
+    Updates the search state based on user input.
+- useEffect: Updates local storage with the latest notes whenever the notes state changes.
+- Rendering:
+    - Renders controlled input fields for creating new notes and searching existing notes.
+    -  Maps over the notes array to render individual Note components.
+    -  The notes array is filtered based on the search state such that the notesElements array is the one containing the notes that should be displayed.
+- The Note component represents an individual note item. It includes a checkbox to mark the note as done, displays the note text, and provides an option to delete the note.
+- The isDone state represents the completion status of the note.
+- The toggle function toggles the completion status of the note.
+- The Note component also receives props:
+    - key: this is actualy the note id
+    - text: the note's text
+    - deleteNote(): function which is actually the delete function from the parent component (App) called for the id of this particular note such that it can be deleted
