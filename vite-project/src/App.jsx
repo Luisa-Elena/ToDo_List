@@ -5,12 +5,11 @@ export default function App() {
 
   const [notes, setNotes] = React.useState(JSON.parse(localStorage.getItem("notes")) || [])
   const [newNote, setNewNote] = React.useState("")
-  const [noteId, setNoteId] = React.useState(0)
   const [search, setSearch] = React.useState("")
 
   function createNewNote(event) {
     setNewNote({
-      id: noteId,
+      id: notes.length,
       text: event.target.value
     })
   }
@@ -19,8 +18,7 @@ export default function App() {
     setNotes(prev => {
       return [...prev, newNote]
     })
-    setNoteId(prev => prev+1)
-    setNewNote({id: noteId, text: ""})
+    setNewNote({id: notes.length, text: ""})
   }
 
   React.useEffect(() => {
